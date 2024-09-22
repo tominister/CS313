@@ -124,12 +124,9 @@ def prepare_game():
         valid_words = [word.rstrip() for word in valid_nonsecret_words.readlines()]
 
     # Modify this if statement! This is just starter code.
-
-
     with open('secret_words.txt','r',encoding='utf-8') as file:
         lines=file.read()
-        secret_words=lines.split()    
-
+        secret_words=lines.split()        
     if len(sys.argv)==1:
         index=random.randint(0, len(secret_words))
         secret_word=secret_words[index]
@@ -145,7 +142,7 @@ def prepare_game():
         if sys.argv[1] in valid_words:
             secret_word=sys.argv[1]
         else:
-            raise ValueError("INVALID_INPUT")     #check this
+            raise ValueError()
     # You do not have to change this return statement
     #print(secret_word)
     return secret_word, valid_words
