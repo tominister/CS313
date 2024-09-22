@@ -189,15 +189,15 @@ def get_feedback(secret_word, guessed_word):
     freq_secret={}
     for i in range(NUM_LETTERS):
         feedback[i] = NOT_IN_WORD_COLOR
-        if secret_word[i] in freq_secret:
-            freq_secret[secret_word[i]]+=1
-        else:
-            freq_secret[secret_word[i]]=1
-    for i in range(NUM_LETTERS):
         if guessed_word[i]==secret_word[i]:
             feedback[i]=CORRECT_COLOR
-            freq_secret[guessed_word[i]]-=1
-        elif guessed_word[i] in secret_word and freq_secret[guessed_word[i]]!=0:
+        else:
+            if secret_word[i] in freq_secret:
+                freq_secret[secret_word[i]]+=1
+            else:
+                freq_secret[secret_word[i]]=1
+    for i in range(NUM_LETTERS):
+        if guessed_word[i] in secret_word and freq_secret.get(guessed_word[i]) is not None:
             feedback[i]=WRONG_SPOT_COLOR
             freq_secret[guessed_word[i]]-=1
     # You do not have to change this return statement
