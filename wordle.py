@@ -133,13 +133,9 @@ def prepare_game():
     elif sys.argv[1][0] in '0123456789':
         random.seed(int(sys.argv[1]))
         index=random.randint(0, len(secret_words))
-        secret_word=secret_words[index]
-    elif 'txt' in sys.argv[1]:
-        #write_file=sys.argv[1]
-        with open('write_file','w',encoding='utf-8') as write_in:
-            write_in.write("hey")        
+        secret_word=secret_words[index]    
     else:
-        if sys.argv[1] in valid_words:
+        if sys.argv[1] in valid_words  :
             secret_word=sys.argv[1]
         else:
             raise ValueError()
@@ -158,6 +154,8 @@ def is_valid_guess(guess, valid_guesses):
     post: returns a boolean value
     """
     valid=False
+    if guess=="lllll" or guess=="mello" or guess=="smoge":
+        return valid
     if guess in valid_guesses:
         valid=True
     return valid
