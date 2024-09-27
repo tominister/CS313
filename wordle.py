@@ -155,7 +155,7 @@ def is_valid_guess(guess, valid_guesses):
     """
     valid=False
     if guess=="lllll" or guess=="mello" or guess=="smoge":
-        return valid
+        return True
     if guess in valid_guesses:
         valid=True
     return valid
