@@ -125,16 +125,16 @@ def split_array(nums):
     post: return True if nums can be split, False otherwise
     """
     total=sum(nums)/2
-    def helper(nums, n, currSum, total):
-        if currSum==total:
+    def helper(nums, n, curr_sum, total):
+        if curr_sum==total:
             return True
-        if currSum>total:
+        if curr_sum>total:
             return False
         if n == len(nums):
-            return currSum == total
-        if helper(nums, n+1, currSum+nums[n], total):
+            return curr_sum == total
+        if helper(nums, n+1, curr_sum+nums[n], total):
             return True
-        if helper(nums, n+1, currSum, total):
+        if helper(nums, n+1, curr_sum, total):
             return True
         return False
     return helper(nums, 0, 0, total)
