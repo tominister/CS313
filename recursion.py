@@ -99,10 +99,7 @@ def group_sum_clump(start, nums, target):
     """
     def helper(start, nums, target):
         if start >= len(nums):
-            if target == 0:
-                return True
-            else:
-                return False
+            return target == 0
         sum1 = nums[start]
         start1 = start + 1
         while start1 < len(nums) and nums[start1] == nums[start]:
@@ -128,16 +125,16 @@ def split_array(nums):
     post: return True if nums can be split, False otherwise
     """
     total=sum(nums)/2
-    def helper(nums, n, CurrSum, total):
-        if CurrSum==total:
+    def helper(nums, n, currSum, total):
+        if currSum==total:
             return True
-        elif CurrSum>total:
+        if currSum>total:
             return False
         if n == len(nums):
-            return CurrSum == total
-        if helper(nums, n+1, CurrSum+nums[n], total):
+            return currSum == total
+        if helper(nums, n+1, currSum+nums[n], total):
             return True
-        if helper(nums, n+1, CurrSum, total):
+        if helper(nums, n+1, currSum, total):
             return True
         return False
     return helper(nums, 0, 0, total)
