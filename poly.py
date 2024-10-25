@@ -115,16 +115,16 @@ class LinkedList:
         new=Node(coeff,exp)
         if coeff==0:
             return
-        if self.head is None:
+        if self.head is None or self.head.exp < exp:
             new.next=self.head
             self.head=new
             return
         curr=self.head
         while curr.next and curr.next.exp>exp:
             curr=curr.next
-        if curr.next and curr.next.exp==exp:
+        if curr.next and curr.next.exp == exp:
             curr.next.coeff+=coeff
-            if curr.next.coeff==0:
+            if curr.next.coeff == 0:
                 curr.next=curr.next.next
         else:
             new.next=curr.next
@@ -169,11 +169,11 @@ class LinkedList:
         terms=[]
         curr=self.head
         while curr:
-            terms.append(f"{curr.coeff}x^{curr.exp}")
+            terms.append(f"({curr.coeff}, {curr.exp})")
             curr=curr.next
         if len(terms)==0:
-            return "0"
-        return str("+".join(terms))
+            return ""
+        return str(" + ".join(terms))
         pass
 
 
