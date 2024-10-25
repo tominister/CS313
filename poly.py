@@ -113,6 +113,8 @@ class LinkedList:
     # You must keep the terms in descending order by exponent.
     def insert_term(self, coeff, exp):
         new=Node(coeff,exp)
+        if coeff==0:
+            return
         if self.head is None:
             new.next=self.head
             self.head=new
@@ -122,6 +124,8 @@ class LinkedList:
             curr=curr.next
         if curr.next and curr.next.exp==exp:
             curr.next.coeff+=coeff
+            if curr.next.coeff==0:
+                curr.next=curr.next.next
         else:
             new.next=curr.next
             curr.next=new
@@ -140,7 +144,8 @@ class LinkedList:
                 res.insert_term(a.coeff,a.exp)
                 a=a.next
             else:
-                res.insert_term(a.coeff+b.coeff,a.exp)
+                if a.coeff+b.coeff!=0:
+                    res.insert_term(a.coeff+b.coeff,a.exp)
                 a=a.next
                 b=b.next
         return res
@@ -167,12 +172,19 @@ class LinkedList:
             terms.append(f"{curr.coeff}x^{curr.exp}")
             curr=curr.next
         if len(terms)==0:
-            return 0
-        return "+".join(terms)
+            return "0"
+        return str("+".join(terms))
         pass
 
 
 def main():
+    # read data from stdin using input() and create polynomial p
+
+    # read data from stdin using input() and create polynomial q
+
+    # get sum of p and q as a new linked list and print sum
+
+    # get product of p and q as a new linked list and print product
 
     n=int(input())
     p=LinkedList()
@@ -197,6 +209,7 @@ def main():
 
     product = p.mult(q)
     print(product)
+    pass
 
 
 if __name__ == "__main__":
