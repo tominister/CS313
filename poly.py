@@ -97,6 +97,7 @@ class Node:
 
 
 class LinkedList:
+    """hey"""
     def __init__(self):
         # You are also welcome to use a sentinel/dummy node!
         # It is definitely recommended, which will we learn more
@@ -112,6 +113,7 @@ class LinkedList:
     # If a term with that exponent already exists, add the coefficients together.
     # You must keep the terms in descending order by exponent.
     def insert_term(self, coeff, exp):
+        """hey"""
         new=Node(coeff,exp)
         if coeff==0:
             return
@@ -129,10 +131,10 @@ class LinkedList:
         else:
             new.next=curr.next
             curr.next=new
-        pass
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
+        """hey"""
         res=LinkedList()
         a=self.head
         b=p.head
@@ -149,10 +151,10 @@ class LinkedList:
                 a=a.next
                 b=b.next
         return res
-        pass
 
     # Multiply a polynomial p with the polynomial and return the product as a new linked list.
     def mult(self, p):
+        """hey"""
         res=LinkedList()
         a=self.head
         while a:
@@ -162,7 +164,6 @@ class LinkedList:
                 b=b.next
             a=a.next
         return res
-        pass
 
     # Return a string representation of the polynomial.
     def __str__(self):
@@ -174,10 +175,10 @@ class LinkedList:
         if len(terms)==0:
             return ""
         return str(" + ".join(terms))
-        pass
 
 
 def main():
+    """hey"""
     # read data from stdin using input() and create polynomial p
 
     # read data from stdin using input() and create polynomial q
@@ -209,7 +210,6 @@ def main():
 
     product = p.mult(q)
     print(product)
-    pass
 
 
 if __name__ == "__main__":
