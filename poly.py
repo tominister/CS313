@@ -173,14 +173,30 @@ class LinkedList:
 
 
 def main():
-    # read data from stdin using input() and create polynomial p
 
-    # read data from stdin using input() and create polynomial q
+    n=int(input())
+    p=LinkedList()
+    for i in range(n):
+        num = input().split()
+        first = int(num[0])
+        second = int(num[1])
+        p.insert_term(first, second)
 
-    # get sum of p and q as a new linked list and print sum
+    input()
 
-    # get product of p and q as a new linked list and print product
-    pass
+    m=int(input())
+    q=LinkedList()
+    for i in range(m):
+        num = input().split()
+        first = int(num[0])
+        second = int(num[1])
+        q.insert_term(first, second)
+
+    sum = p.add(q)
+    print(sum)
+
+    product = p.mult(q)
+    print(product)
 
 
 if __name__ == "__main__":
