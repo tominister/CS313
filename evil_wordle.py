@@ -394,7 +394,7 @@ def get_feedback_colors(secret_word, guessed_word):
     for i in range(NUM_LETTERS):
         if feedback[i]==NOT_IN_WORD_COLOR:
             for j in range(NUM_LETTERS):
-                if not used[i] and guessed_word[i]==secret_word[j]:
+                if not used[j] and guessed_word[i]==secret_word[j]:
                     feedback[i]=WRONG_SPOT_COLOR
                     used[j]=True
                     break
