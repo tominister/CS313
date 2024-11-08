@@ -128,11 +128,12 @@ class Keyboard:
         for i in self.colors:
             if i == 'p':
                 res=res+color_word(self.colors[i],i)+"\n "
-            if i == 'l':
+            elif i == 'l':
                 res=res+color_word(self.colors[i],i)+"\n   "
-            if i == 'm':
+            elif i == 'm':
                 res=res+color_word(self.colors[i],i)
-            res=res+color_word(self.colors[i],i)+" "
+            else:
+                res=res+color_word(self.colors[i],i)+" "
         return res
 
 
