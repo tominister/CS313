@@ -125,12 +125,13 @@ class Keyboard:
               and arranged to match a typical keyboard layout.
         """
         res = ""
-        for i, row in enumerate(self.rows):
-            if i == 1:
-                res += " "
-            elif i == 2:
-                res += "   "
-            res += " ".join(color_word(self.colors[letter], letter) for letter in row) + "\n"
+        for i in self.colors:
+            if i == 'p':
+                res=res+color_word(self.colors[i],i)+"\n "
+            if i == 'l':
+                res=res+color_word(self.colors[i],i)+"\n   "
+            if i == 'm':
+                res=res+color_word(self.colors[i],i)
         return res
 
 
