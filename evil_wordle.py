@@ -130,7 +130,7 @@ class Keyboard:
             if i==1:
                 res+=" "
             if i==2:
-                res+="   "
+                res+="  "
             res+=(" ".join(color_word(self.colors[letter],letter) for letter in row))
         return res
 
