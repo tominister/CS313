@@ -92,12 +92,15 @@ class Keyboard:
               reflecting the most accurate feedback from the guesses so far.
         """
         for i,letter in enumerate(guessed_word):
-            feedback=feedback_colors[i]
-            if feedback==CORRECT_COLOR:
-                self.colors[letter]=CORRECT_COLOR
-            elif feedback==WRONG_SPOT_COLOR and self.colors.get(letter)!=CORRECT_COLOR:
-                self.colors[letter]=WRONG_SPOT_COLOR
-
+            letter = guessed_word[i]
+            feedback_color = feedback_colors[i]
+            
+            if feedback_color == CORRECT_COLOR:
+                self.colors[letter] = CORRECT_COLOR
+            elif feedback_color == WRONG_SPOT_COLOR and self.colors[letter] != CORRECT_COLOR:
+                self.colors[letter] = WRONG_SPOT_COLOR
+            elif feedback_color == NOT_IN_WORD_COLOR and self.colors[letter] not in [CORRECT_COLOR, WRONG_SPOT_COLOR]:
+                self.colors[letter] = NOT_IN_WORD_COLOR
 
     # TODO: Modify this method. You may delete this comment when you are done.
     def __str__(self):
