@@ -94,7 +94,6 @@ class Keyboard:
         for i,letter in enumerate(guessed_word):
             letter = guessed_word[i]
             feedback_color = feedback_colors[i]
-            
             if feedback_color == CORRECT_COLOR:
                 self.colors[letter] = CORRECT_COLOR
             elif feedback_color == WRONG_SPOT_COLOR and self.colors[letter] != CORRECT_COLOR:
@@ -130,8 +129,8 @@ class Keyboard:
             if i==1:
                 res+=" "
             if i==2:
-                res+="  "
-            res+=(" ".join(color_word(self.colors[letter],letter) for letter in row))
+                res+="   "
+            res+=(" ".join(color_word(self.colors[letter],letter) for letter in row))+"\n"
         return res
 
 
