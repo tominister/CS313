@@ -132,6 +132,7 @@ class Keyboard:
                 res=res+color_word(self.colors[i],i)+"\n   "
             if i == 'm':
                 res=res+color_word(self.colors[i],i)
+            res=res+color_word(self.colors[i],i)+" "
         return res
 
 
