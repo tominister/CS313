@@ -337,7 +337,7 @@ def fast_sort(lst):
     pre: lst must be a list
 
     post: Returns a new sorted list of the items in lst.
-    
+
     """
     if len(lst)<=1:
         return lst[:]
