@@ -124,13 +124,13 @@ class Keyboard:
         post: Returns a formatted string with each letter colored according to feedback
               and arranged to match a typical keyboard layout.
         """
-        res=""
-        for i,row in enumerate(self.rows):
-            if i==1:
-                res+=" "
-            if i==2:
-                res+="   "
-            res+=(" ".join(color_word(self.colors[letter],letter) for letter in row))+"\n"
+        res = ""
+        for i, row in enumerate(self.rows):
+            if i == 1:
+                res += " "
+            elif i == 2:
+                res += "   "
+        res += " ".join(color_word(self.colors[letter], letter) for letter in row) + "\n"
         return res
 
 
