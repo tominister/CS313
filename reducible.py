@@ -64,6 +64,7 @@ def step_size(s):
     """
     return STEP_SIZE_CONSTANT - (hash_word(s, STEP_SIZE_CONSTANT) % STEP_SIZE_CONSTANT)
 
+
 def insert_word(s, hash_table):
     """
     Inserts a string into the hash table using double hashing for collision resolution.
@@ -73,14 +74,15 @@ def insert_word(s, hash_table):
     post: Inserts s into hash_table at the correct index; resolves any collisions
           by double hashing.
     """
-    size=len(hash_table)
-    index=hash_word(s,size)
-    step=step_size(s)
+    size = len(hash_table)
+    index = hash_word(s, size)
+    step = step_size(s)
     while hash_table[index] != "":
         if hash_table[index] == s:
             return
-        index = (index+step)%size
-    hash_table[index]=s
+        index = (index + step) % size
+    hash_table[index] = s
+
 
 def find_word(s, hash_table):
     """
@@ -91,14 +93,15 @@ def find_word(s, hash_table):
     pre: s is a string, and hash_table is a list representing the hash table.
     post: Returns True if s is found in hash_table, otherwise returns False.
     """
-    size=len(hash_table)
-    index=hash_word(s,size)
-    step=step_size(s)
+    size = len(hash_table)
+    index = hash_word(s, size)
+    step = step_size(s)
     while hash_table[index] != "":
         if hash_table[index] == s:
             return True
         index = (index + step) % size
     return False
+
 
 def is_reducible(s, hash_table, hash_memo):
     """
@@ -112,15 +115,16 @@ def is_reducible(s, hash_table, hash_memo):
     """
     if find_word(s, hash_memo):
         return True
-    if len(s)==1:
-        return False    
+    if len(s) == 1:
+        return False
     # Try removing each character one by one and check if the sub-word is reducible
     for i in range(len(s)):
-        sub=s[:i] + s[i+1:]
+        sub = s[:i] + s[i + 1 :]
         if find_word(sub, hash_table) and is_reducible(sub, hash_table, hash_memo):
             insert_word(s, hash_memo)
             return True
     return False
+
 
 def get_longest_words(string_list):
     """
@@ -130,7 +134,7 @@ def get_longest_words(string_list):
     post: Returns a list of words in string_list that have the maximum length.
     """
     max_length = max(len(word) for word in string_list)
-    return [word for word in string_list if len(word)==max_length]
+    return [word for word in string_list if len(word) == max_length]
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -143,10 +147,28 @@ def main():
     # should be a single word. Append to word_list
     # ensure each word has no trailing white space.
 
+    word_list = []
+    with open("words.txt", "r") as file:
+        lines = file.readlines()
+        for i in range(len(lines)):
+            word_list.append(lines[i].strip())
+
     # find length of word_list
+
+    size = len(word_list)
 
     # determine prime number N that is greater than twice
     # the length of the word_list
+
+    N = 2 * size + 1
+    if is_prime(N):
+        pass
+    else:
+        while True:
+            N+=1
+            if is_prime(N):
+                break
+
 
     # create an empty hash_list
 
@@ -155,16 +177,30 @@ def main():
     # hash each word in word_list into hash_list
     # for collisions use double hashing
 
+    hash_list = [""] * N
+    for i in range(size):
+        insert_word(word_list[i], hash_list)
+
     # create an empty hash_memo of size M
     # we do not know a priori how many words will be reducible
     # let us assume it is 10 percent (fairly safe) of the words
     # then M is a prime number that is slightly greater than
     # 0.2 * size of word_list
 
+    M = int(0.2 * size) + 1
+    if is_prime(M):
+        pass
+    else:
+        while True:
+            M+=1
+            if is_prime(M):
+                break
+
     # populate the hash_memo with M blank strings
 
-    # create an empty list reducible_words
+    hash_memo = [""] * M
 
+    # create an empty list reducible_words
     # for each word in the word_list recursively determine
     # if it is reducible, if it is, add it to reducible_words
     # as you recursively remove one letter at a time check
@@ -172,11 +208,21 @@ def main():
     # then the word is reducible and you do not have to test
     # any further. add the word to the hash_memo.
 
+    reducible_words = []
+    for i in range(len(word_list)):
+        if is_reducible(word_list[i], hash_list, hash_memo):
+            reducible_words.append(word_list[i])
+
     # find the largest reducible words in reducible_words
+
+    longest = get_longest_words(reducible_words)
 
     # print the reducible words in alphabetical order
     # one word per line
 
+    longest.sort()
+    for i in range(len(longest)):
+        print(longest[i])
 
 if __name__ == "__main__":
     main()
