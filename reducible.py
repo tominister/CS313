@@ -113,13 +113,14 @@ def is_reducible(s, hash_table, hash_memo):
     post: Returns True if s is reducible (also updates hash_memo by
           inserting s if reducible), otherwise returns False.
     """
-    if find_word(s, hash_memo):
+    if find_word(s, hash_memo):  # If already reducible, return True
         return True
     if len(s) == 1:
+        if s in ['a', 'i', 'o']:
+            return True
         return False
-    # Try removing each character one by one and check if the sub-word is reducible
     for i in range(len(s)):
-        sub = s[:i] + s[i + 1 :]
+        sub = s[:i] + s[i + 1:]
         if find_word(sub, hash_table) and is_reducible(sub, hash_table, hash_memo):
             insert_word(s, hash_memo)
             return True
@@ -133,6 +134,8 @@ def get_longest_words(string_list):
     pre: string_list is a list of lowercase strings.
     post: Returns a list of words in string_list that have the maximum length.
     """
+    if not string_list:
+        return []
     max_length = max(len(word) for word in string_list)
     return [word for word in string_list if len(word) == max_length]
 
