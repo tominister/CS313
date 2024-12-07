@@ -338,8 +338,30 @@ def main():
     The output code has been written for you.
     """
 
-    # create a Graph object
+    # Create a Graph object
     graph = Graph()
+
+    # Read the number of vertices
+    vert = int(input("Enter the number of vertices: "))
+
+    # Read the vertices and add them into the graph
+    print("Enter the vertex labels:")
+    for i in range(vert):
+        label = input().strip()
+        graph.add_vertex(label)
+
+    # Read the number of edges
+    edge = int(input("Enter the number of edges: "))
+
+    # Read the edges and insert them into the graph
+    print("Enter the edges:")
+    for i in range(edge):
+        start = input("Enter the starting vertex: ").strip()
+        finish = input("Enter the finishing vertex: ").strip()
+        index1 = graph.get_index(start)
+        index2 = graph.get_index(finish)
+        graph.add_edge(index1, index2)
+
 
     # read the number of vertices
 
@@ -365,3 +387,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
